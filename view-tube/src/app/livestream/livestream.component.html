@@ -1,0 +1,91 @@
+
+
+<div class="container">
+    <h2>Schedule Event Form</h2>
+    <div id="container" class="container">
+        <header>
+            <h1 id="h1">
+                ViewTube Live Stream Event Form
+            </h1>
+        </header>
+        <form class="form"  [formGroup]="liveStream">
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label class="text-white-50">Add Title</mat-label>
+                <input class="text-white" matInput placeholder="Type Here" formControlName="appTitle"/>
+                <mat-error *ngIf="appTitle?.errors?.['required']">
+                    Title is required.
+                </mat-error>
+            </mat-form-field>
+
+            <div class="column">
+
+                <mat-form-field class="data" appearance="fill">
+                    <mat-label class="text-white-50">Form Date</mat-label>
+                    <input type="date" class="text-white" matInput placeholder="Type Here" formControlName="formDate" [min]="minDate">
+                    <mat-error *ngIf="formDate?.errors?.['required']">
+                        Form Date is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="data" appearance="fill">
+                    <mat-label class="text-white-50">To Date</mat-label>
+                    <input type="date" class="text-white" matInput placeholder="Type Here" formControlName="toDate" >
+                    <mat-error *ngIf="toDate?.errors?.['required']">
+                        To Date is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="data" appearance="fill">
+                    <mat-label class="text-white-50">Form Time</mat-label>
+                    <mat-select name="formTime" formControlName="formTime">
+                        <mat-option *ngFor="let time of times" value="{{time}}" >
+                            {{time}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formTime?.errors?.['required']">
+                        Form Time is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="data" appearance="fill">
+                    <mat-label class="text-white-50">To Time</mat-label>
+                    <mat-select name="formTime" formControlName="toTime">
+                        <mat-option *ngFor="let time of times" value="{{time}}" >
+                            {{time}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="toTime?.errors?.['required']">
+                        To Time is required.
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+            <div>
+                <mat-form-field class="textbox" appearance="fill">
+                    <mat-label>Add Event Details</mat-label>
+                    <textarea rows="5"  class="text-white" matInput placeholder="Write something about your event" formControlName="description">
+                    </textarea>
+                
+                </mat-form-field>
+                
+                <mat-form-field class="textbox1" appearance="outline">
+                    <mat-label>Guest</mat-label>
+                    <textarea rows="5" class="border border-light " class="text-white" matInput placeholder="Enter your EmailId" formControlName="guest" >
+                    </textarea>
+
+                    <mat-error *ngIf="guest?.errors?.['pattern']">
+                        Email of Guest is required.
+                    </mat-error>
+
+                    <mat-error *ngIf="guest?.errors?.['required']">
+                        Email of Guest is required.
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+            <button mat-raised-button (click)="onSubmit()" >Go Live</button>
+        </form>
+    </div>
+    
+</div>
